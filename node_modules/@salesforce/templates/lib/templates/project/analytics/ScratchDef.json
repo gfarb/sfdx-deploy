@@ -1,0 +1,13 @@
+{
+  "orgName": "<%= company %>",
+  "edition": "Developer",
+  "features": ["DevelopmentWave", "EnableSetPasswordInApi"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "sfdx-deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.0.3",
+    "sfdx-cli": "^7.163.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  }
+}

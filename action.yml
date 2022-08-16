@@ -1,0 +1,24 @@
+name: "Salesforce Deploy Action"
+description: "This action allows you to automate your Salesforce build, test and deploy pipeline using GitHub Actions."
+inputs:
+  TARGET_USERNAME:
+    description: "Username or alias for the target org. Must be pre-authorized."
+    required: true
+  SOURCE_PATH:
+    description: "Comma-separated list of paths to the local source files to include in the manifest."
+    required: false
+  DESTRUCTIVE_CHANGES:
+    description: "Path to folder containing manifests (destructiveChangesPre.xml, destructiveChangesPost.xml) of components to delete before and/or after the deploy."
+    required: false
+  TEST_LEVEL:
+    description: "Level of deployment tests to run. The default value is RunLocalTests."
+    required: false
+  WAIT:
+    description: "Number of minutes to wait for the command to complete. The default value is 33 minutes."
+    required: false
+outputs:
+  DEPLOYED:
+    description: "Boolean value that identifies if the deployment was successful."
+runs:
+  using: "node16"
+  main: "index.js"
