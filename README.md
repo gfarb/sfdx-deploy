@@ -74,7 +74,7 @@ jobs:
           rm server.key
 
       - name: Build, Test & Deploy
-        uses: actions/sfdx-deploy@v1
+        uses: gfarb/sfdx-deploy@v1
         env:
           TARGET_USERNAME: gfarb@github.dreamforce
           SOURCE_PATH: force-app
