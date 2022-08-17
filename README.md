@@ -2,7 +2,7 @@
 
 Salesforce Deploy is a lightweight GitHub Action that allows you to quickly and safely automate your Salesforce build, test and deploy pipeline using GitHub Workflows.
 
-Uses the Salesforce CLI to create a manifest from one or more local directories that contain source files and uses the `force:source:deploy` command to test in and deploy to a target environment.
+Uses the Salesforce CLI to create a manifest from one or more local directories that contain source files by running the `force:source:convert` command and runs the `force:source:deploy` command to test in and deploy to a target environment.
 
 Supports both pre and post destructive changes.
 

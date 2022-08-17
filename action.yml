@@ -1,4 +1,5 @@
 name: "Salesforce Deploy Action"
+author: "GitHub"
 description: "This action allows you to automate your Salesforce build, test and deploy pipeline using GitHub Actions."
 inputs:
   TARGET_USERNAME:
@@ -22,3 +23,6 @@ outputs:
 runs:
   using: "node16"
   main: "index.js"
+branding:
+  icon: "box"
+  color: "blue"
