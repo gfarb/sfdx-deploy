@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "prepare": "husky install"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,12 +13,14 @@
     "sfdx-cli": "^7.163.0"
   },
   "devDependencies": {
-    "eslint": "^8.22.0",
     "husky": "^8.0.0",
-    "lint-staged": "^13.0.3",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "pretty-quick": "^3.1.3"
   },
   "lint-staged": {
-    "*": "prettier --write --ignore-unknown"
+    "*.js": "prettier --write"
+  },
+  "scripts": {
+    "prepare": "husky install"
   }
 }
