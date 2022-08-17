@@ -6,6 +6,8 @@ Uses the Salesforce CLI to create a manifest from one or more local directories 
 
 Supports both pre and post destructive changes.
 
+![](https://user-images.githubusercontent.com/22826414/185196841-8570dd5f-6560-465b-87ec-4df36f0d9f8d.gif)
+
 ## Usage
 
 ```yml
@@ -40,11 +42,11 @@ Supports both pre and post destructive changes.
 ## Example Workflow
 
 ```yml
-name: Deploy to Salesforce Production
 on:
   push:
     branches:
       - "master"
+name: Deploy to Salesforce Production
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -55,13 +57,21 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "14"
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: npm_cache_id
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-cache-
+            ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: npm install
-
-      - name: Install SFDX
-        run: npm install sfdx-cli --global
+        if: steps.npm_cache_id.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: SFDX Auth
         env:
@@ -69,8 +79,8 @@ jobs:
           SFDX_CLIENT_ID: ${{ secrets.SFDX_CLIENT_ID }}
         run: |
           echo "${SFDX_JWT_KEY}" > server.key
-          sfdx force:auth:jwt:grant --clientid "${SFDX_CLIENT_ID}" --jwtkeyfile server.key --username gfarb@github.dreamforce --setdefaultdevhubusername
-          sfdx force:org:display --json -u gfarb@github.dreamforce > sfdx-auth.json
+          npx sfdx force:auth:jwt:grant --clientid "${SFDX_CLIENT_ID}" --jwtkeyfile server.key --username gfarb@github.dreamforce --setdefaultdevhubusername
+          npx sfdx force:org:display --json -u gfarb@github.dreamforce > sfdx-auth.json
           rm server.key
 
       - name: Build, Test & Deploy
