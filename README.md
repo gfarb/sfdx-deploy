@@ -1,6 +1,6 @@
 # Salesforce Deploy Action
 
-Salesforce Deploy Action is a lightweight GitHub Action that allows you to quickly and safely automate your Salesforce build, test and deploy pipeline using GitHub Actions.
+Salesforce Deploy is a lightweight GitHub Action that allows you to quickly and safely automate your Salesforce build, test and deploy pipeline using GitHub Workflows.
 
 Uses the Salesforce CLI to create a manifest from one or more local directories that contain source files and uses the `force:source:deploy` command to test in and deploy to a target environment.
 
@@ -10,7 +10,7 @@ Supports both pre and post destructive changes.
 
 ```yml
 - uses: actions/sfdx-deploy
-  with:
+  env:
     # Username or alias for the target org. Must be pre-authorized.
     # Required
     TARGET_USERNAME: ""
@@ -75,7 +75,7 @@ jobs:
 
       - name: Build, Test & Deploy
         uses: actions/sfdx-deploy@v1
-        with:
+        env:
           TARGET_USERNAME: gfarb@github.dreamforce
           SOURCE_PATH: force-app
           DESTRUCTIVE_CHANGES: destructive-changes
