@@ -1,14 +1,13 @@
 import * as core from "@actions/core";
 import { spawnSync } from "node:child_process";
 export class SfdxCommand {
-  command = "sfdx";
   constructor(commandArgs, errorMessage) {
-    this.commandArgs = commandArgs;
+    this.commandArgs = ["sfdx", ...commandArgs];
     this.errorMessage = errorMessage;
   }
   run() {
     try {
-      const results = spawnSync(this.command, this.commandArgs, {
+      const results = spawnSync("npx", this.commandArgs, {
         stdio: "inherit",
       });
       this.succeeded = results.status === 0 ? true : false;
