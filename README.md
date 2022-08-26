@@ -38,6 +38,7 @@ Supports both pre and post destructive changes.
 ## Outputs
 
 - `DEPLOYED`: Boolean value that identifies if the deployment was successful.
+- `DESTRUCTIVE_CHANGES`: Boolean value that identifies if destructive changes were present.
 
 ## Example Workflow
 
