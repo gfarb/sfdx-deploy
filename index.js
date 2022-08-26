@@ -19,11 +19,15 @@ async function constructDestructiveChangesArgs(SfdxArguments) {
         "--postdestructivechanges",
         `${SfdxArguments.pathToDestructiveChanges}/destructiveChangesPost.xml`
       );
+      core.setOutput("DESTRUCTIVE_CHANGES", true);
     } else if (file === "destructiveChangesPre.xml") {
       SfdxArguments.destructiveChanges.push(
         "--predestructivechanges",
         `${SfdxArguments.pathToDestructiveChanges}/destructiveChangesPre.xml`
       );
+      core.setOutput("DESTRUCTIVE_CHANGES", true);
+    } else {
+      core.setOutput("DESTRUCTIVE_CHANGES", false);
     }
   }
 }
@@ -37,7 +41,7 @@ function deploy(SfdxArguments) {
       "--manifestname",
       "temp-deploy-manifest",
     ],
-    "An error occured while trying to run force:source:manifest:create."
+    "An error occurred while trying to run force:source:manifest:create."
   );
   GenerateManifestCommand.run();
   if (!GenerateManifestCommand.succeeded) return;
@@ -57,7 +61,7 @@ function deploy(SfdxArguments) {
     deployArgs.push("--wait", SfdxArguments.timeout);
   const DeployCommand = new SfdxCommand(
     deployArgs,
-    "An error occured while trying to run force:source:deploy."
+    "An error occurred while trying to run force:source:deploy."
   );
   DeployCommand.run();
   if (DeployCommand.succeeded === true) core.setOutput("DEPLOYED", true);
