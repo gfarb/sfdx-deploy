@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import { spawnSync } from "node:child_process";
 export class SfdxCommand {
   constructor(commandArgs, errorMessage) {
-    this.commandArgs = ["sfdx", ...commandArgs];
+    this.commandArgs = ["sfdx-cli", ...commandArgs];
     this.errorMessage = errorMessage;
   }
   run() {
